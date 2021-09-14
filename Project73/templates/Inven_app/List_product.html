@@ -1,0 +1,51 @@
+{% extends 'Inven_app/Home.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+<title>Product List</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="container" style="padding:30px 20px; background-color: rgb(161, 223, 126);">
+  <div style="color: black;"><h1 style="text-align: center; font-family: 'Times New Roman', Times, serif; font-size: 40px;"><strong>Product List</strong></h1></div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Date</th>
+          <th scope="col">Provider</th>
+          <th scope="col">Name of Product</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Action</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for field in p_list %}
+        <tr>
+          <td>{{field.id}}</td>
+          <td>{{field.Date}}</td>
+          <td>{{field.Provider}}</td>
+          <td>{{field.Product_name}}</td>
+          <td>{{field.Price}}</td>
+          <td>{{field.Quantity}}</td>
+          <td>{{field.Amount}}</td>
+          <td>{{field.Stock}}</td>
+          <td>
+            <a href="{% url 'updateList' field.id %}" class="edit" title="Edit" data-toggle="tooltip" style="margin-left: 5%; color: #fbff00;"><i class="material-icons" style="font-size: 25px; padding: auto; margin-right: 20%;">&#xE254;</i></a>
+            <a href="{% url 'deleteList' field.id %}" class="delete" title="Delete" data-toggle="tooltip" style="margin-left: 5%; color: #ff0b0b;"><i class="material-icons" style="font-size: 25px; padding: auto;">&#xE872;</i></a>
+        </td>
+       
+        </tr>
+        {% endfor %}
+      </tbody>
+
+  </table>
+</div>
+{% endblock %}
